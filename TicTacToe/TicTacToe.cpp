@@ -33,7 +33,8 @@ void pickArrayX()
 	std::cin >> y;
 	if (board[x][y] == letterO[x][y])
 	{
-		while (board[x][y] = letterX[x][y])
+
+		while (board[x][y] == letterX[x][y])
 		{
 			std::cout << "You can't use that spot" << std::endl;
 			std::cout << "X Pick a spot" << std::endl;
@@ -41,15 +42,13 @@ void pickArrayX()
 			std::cin >> x;
 			std::cout << "Enter the cordinate for Y (the numbers on top of the board of zeros)" << std::endl;
 			std::cin >> y;
-			if (board[x][y] = letterO[x][y])
+
+			if (board[x][y] == letterX[x][y])
 			{
+				std::cout << "You've claimed this spot already" << std::endl;
 				return;
 			}
-			else if (board[x][y] = letterX[x][y])
-			{
-				return;
-			}
-			else
+			else if (board[x][y] != letterX[x][y] && board[x][y] != letterO[x][y])
 			{
 				board[x][y] = letterX[x][y];
 				break;
@@ -61,8 +60,6 @@ void pickArrayX()
 		board[x][y] = letterX[x][y];
 	}
 
-
-	
 	system("pause");
 	system("cls");
 }
@@ -216,17 +213,34 @@ void winConO()
 	else
 		return;
 }
+
+bool drawCon()
+{
+	if (board[0][0] == 'X' || board[0][0] == 'O' && board[0][1] == 'X' || board[0][1] == 'O' && board[0][2] == 'X' || board[0][2] == 'O')
+		return row0Clear == true;
+	else if (board[1][0] == 'X' || board[1][0] == 'O' && board[1][1] == 'X' || board[1][1] == 'O' && board[1][2] == 'X' || board[1][2] == 'O')
+		return row1Clear == true;
+	else if (board[2][0] == 'X' || board[2][0] == 'O' && board[2][1] == 'X' || board[2][1] == 'O' && board[2][2] == 'X' || board[2][2] == 'O')
+		return row2Clear == true;
+
+	if (row0Clear == true && row1Clear == true && row2Clear == true)
+	{
+		return true;
+	}
+	return false;
+}
+
 void ticTacToe()
 {
 	if (takenX == true)
 	{
-		std::cout << name1 << " is " << "X" << std::endl;
-		std::cout << name2 << " is " << "O" << std::endl;
+		std::cout << name1 << " is X" << std::endl;
+		std::cout << name2 << " is O" << std::endl;
 	}
 	else if (takenO == true)
 	{
-		std::cout << name1 << " is " << "O" << std::endl;
-		std::cout << name2 << " is " << "X" << std::endl;
+		std::cout << name1 << " is O" << std::endl;
+		std::cout << name2 << " is X" << std::endl;
 	}
 	while (gameOver == false)
 	{
@@ -239,9 +253,13 @@ void ticTacToe()
 		std::cout << "1" << board[1][0] << board[1][1] << board[1][2] << std::endl;
 		std::cout << "2" <<board[2][0] << board[2][1] << board[2][2] << std::endl;
 
-
 		pickArrayX();
 		winConX();
+		drawCon();
+		if (drawCon() == true)
+		{
+			gameOver == true;
+		}
 		if (gameOver == true)
 		{
 			break;
@@ -253,11 +271,10 @@ void ticTacToe()
 		std::cout << "2" << board[2][0] << board[2][1] << board[2][2] << std::endl;
 		pickArrayO();
 		winConO();
-
-		
-		if (board[1][1] == letterX[1][1])
+		drawCon();
+		if (drawCon() == true)
 		{
-			std::cout << "nice";
+			gameOver == true;
 		}
 		
 		if (gameOver == true)
