@@ -20,6 +20,7 @@ bool winO = false;
 bool row0Clear = false;
 bool row1Clear = false;
 bool row2Clear = false;
+int number = 1;
 int takenSpot = 10;
 int openSpot = 11;
 void pickArrayX()
@@ -125,6 +126,7 @@ int pickALetter()
 }
 void winConX()
 {
+	number += 1;
 	if ((board[0][0] == letterX[0][0]) && (board[1][1] == letterX[1][1]) && (board[2][2] == letterX[2][2]))
 	{
 		winX = true;
@@ -170,6 +172,7 @@ void winConX()
 }
 void winConO()
 {
+	number += 1;
 	if ((board[0][0] == letterO[0][0]) && (board[1][1] == letterO[1][1]) && (board[2][2] == letterO[2][2]))
 	{
 		winO = true;
@@ -214,22 +217,6 @@ void winConO()
 		return;
 }
 
-bool drawCon()
-{
-	if (board[0][0] == 'X' || board[0][0] == 'O' && board[0][1] == 'X' || board[0][1] == 'O' && board[0][2] == 'X' || board[0][2] == 'O')
-		return row0Clear == true;
-	else if (board[1][0] == 'X' || board[1][0] == 'O' && board[1][1] == 'X' || board[1][1] == 'O' && board[1][2] == 'X' || board[1][2] == 'O')
-		return row1Clear == true;
-	else if (board[2][0] == 'X' || board[2][0] == 'O' && board[2][1] == 'X' || board[2][1] == 'O' && board[2][2] == 'X' || board[2][2] == 'O')
-		return row2Clear == true;
-
-	if (row0Clear == true && row1Clear == true && row2Clear == true)
-	{
-		return true;
-	}
-	return false;
-}
-
 void ticTacToe()
 {
 	if (takenX == true)
@@ -242,7 +229,7 @@ void ticTacToe()
 		std::cout << name1 << " is O" << std::endl;
 		std::cout << name2 << " is X" << std::endl;
 	}
-	while (gameOver == false)
+	while (number <= 10)
 	{
 
 
@@ -255,8 +242,7 @@ void ticTacToe()
 
 		pickArrayX();
 		winConX();
-		drawCon();
-		if (drawCon() == true)
+		if (number >= 10)
 		{
 			gameOver == true;
 		}
@@ -271,8 +257,7 @@ void ticTacToe()
 		std::cout << "2" << board[2][0] << board[2][1] << board[2][2] << std::endl;
 		pickArrayO();
 		winConO();
-		drawCon();
-		if (drawCon() == true)
+		if (number >= 10)
 		{
 			gameOver == true;
 		}
@@ -300,8 +285,9 @@ void ticTacToe()
 	}
 	else
 	{
-		std::cout << "It was a Draw"<< std::endl;
+		std::cout << "It was a draw" << std::endl;
 	}
+	system("pause");
 
 }
 int main()
