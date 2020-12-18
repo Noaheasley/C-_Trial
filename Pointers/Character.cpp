@@ -17,8 +17,24 @@ void Character::attack(Character* other)
 	other->takeDamage(getDamage());
 }
 
+void Character::heal(Character* other)
+{
+	other->healDamage(5);
+}
+
 float Character::takeDamage(float damageAmount)
 {
 	m_health -= damageAmount;
 	return damageAmount;
+}
+
+float Character::healDamage(float healthGained)
+{
+	m_health += healthGained;
+	return healthGained;
+}
+
+void Character::getInput()
+{
+
 }
