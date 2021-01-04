@@ -14,7 +14,7 @@ private:
 	void end();
 
 private:
-	bool m_gameOver;
+	bool m_gameOver = false;
 	Character* m_player1;
 	Character* m_player2;
 };

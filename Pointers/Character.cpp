@@ -33,8 +33,3 @@ float Character::healDamage(float healthGained)
 	m_health += healthGained;
 	return healthGained;
 }
-
-void Character::getInput()
-{
-
-}

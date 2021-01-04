@@ -7,7 +7,6 @@ public:
 
 	void attack(Character* other);
 	void heal(Character* other);
-	void getInput();
 	float takeDamage(float damageAmount);
 	float healDamage(float healthGained);
 
