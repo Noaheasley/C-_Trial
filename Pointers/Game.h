@@ -12,7 +12,6 @@ private:
 	void update();
 	void draw();
 	void end();
-
 private:
 	bool m_gameOver = false;
 	Character* m_player1;

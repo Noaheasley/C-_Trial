@@ -12,6 +12,9 @@ public:
 
 	float getDamage() { return m_damage; }
 	float getHealth() { return m_health; }
+	float setDamage(float damage);
+	float setHealth(float health);
+
 
 private:
 	float m_health;

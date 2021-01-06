@@ -32,10 +32,10 @@ bool binaryFileExample()
 	if (!file.is_open())
 		return false;
 
-	file.seekg(sizeof(Character) * 2, std::ios::beg);
+	file.seekg(sizeof(Character) * 1, std::ios::beg);
 
 	file.read((char*)&sbeve4, sizeof(Character));
-	
+
 	std::cout << sbeve4.health << std::endl;
 	std::cout << sbeve4.damage << std::endl;
 	file.close();

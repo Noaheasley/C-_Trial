@@ -33,3 +33,12 @@ float Character::healDamage(float healthGained)
 	m_health += healthGained;
 	return healthGained;
 }
+
+float Character::setHealth(float healthVal)
+{
+	return m_health = healthVal;
+}
+float Character::setDamage(float damageVal)
+{
+	return m_damage = damageVal;
+}
